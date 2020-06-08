@@ -5,8 +5,8 @@ CURRENT_PATH=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 echo '######## converting mrp to amr ...' >&2
 python3 ${CURRENT_PATH}/../utils/mrp_to_amr.py -i $1 -o $1.amr.txt --not_amr_str_only --all_nodes
 
-export JAMR_HOME=path/to/jamr
-export CDEC=path/to/cdec
+export JAMR_HOME=${HOME}/jamr
+export CDEC=${JAMR_HOME}/tools/cdec
 
 echo '######## running jamr rule based aligner ...' >&2
 ${JAMR_HOME}/scripts/ALIGN.sh < $1.amr.txt > $1.jalign.txt
