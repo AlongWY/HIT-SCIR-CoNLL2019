@@ -10,6 +10,7 @@
 *.exp
 *.lib
 *.log
+__pycache__
 
 fast_smatch/build
 fast_smatch/_smatch.c
