@@ -251,10 +251,10 @@ class Alignment(object):
 
         named_concepts = set()
         attributes = set()
-        for t in graph.triples:
+        for t in graph.triples():
             if t.relation == 'instance':
                 named_concepts.add(t.source)
-        for t in graph.triples:
+        for t in graph.triples():
             if t.relation != 'instance' and t.target not in named_concepts:
                 attributes.add(t.target)
         return graph, attributes
