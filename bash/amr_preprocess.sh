@@ -2,16 +2,16 @@
 
 CURRENT_PATH=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-echo '######## converting mrp to amr ...' >&2
-python3 ${CURRENT_PATH}/../utils/mrp_to_amr.py -i $1 -o $1.amr.txt --not_amr_str_only --all_nodes
-
-export JAMR_HOME=${HOME}/jamr
-export CDEC=${JAMR_HOME}/tools/cdec
-
-echo '######## running jamr rule based aligner ...' >&2
-${JAMR_HOME}/scripts/ALIGN.sh < $1.amr.txt > $1.jalign.txt
-
-TOOLKIT_HOME=${CURRENT_PATH}/../toolkit
+#echo '######## converting mrp to amr ...' >&2
+#python3 ${CURRENT_PATH}/../utils/mrp_to_amr.py -i $1 -o $1.amr.txt --not_amr_str_only --all_nodes
+#
+#export JAMR_HOME=${HOME}/jamr
+#export CDEC=${JAMR_HOME}/tools/cdec
+#
+#echo '######## running jamr rule based aligner ...' >&2
+#${JAMR_HOME}/scripts/ALIGN.sh < $1.amr.txt > $1.jalign.txt
+#
+#TOOLKIT_HOME=${CURRENT_PATH}/../toolkit
 
 echo '######## running tamr rule based aligner ...' >&2
 python3 ${TOOLKIT_HOME}/tamr_aligner/rule_base_align.py -verbose -data $1.jalign.txt -output $1.alignment.txt -wordvec $2 -trials 10000 -improve_perfect -morpho_match -semantic_match
